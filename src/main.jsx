@@ -2,14 +2,15 @@ import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import App from './App.jsx'
 import './index.css'
-import { store } from './store.js'
-import { Provider } from 'react-redux'
+import { ApiProvider } from '@reduxjs/toolkit/query/react'
+import { apiSlice } from './components/api/apiSlice.js'
+
 
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <Provider store={store}>
+    <ApiProvider api={apiSlice}>
       <App />
-    </Provider>
+    </ApiProvider>
   </StrictMode>,
 )
