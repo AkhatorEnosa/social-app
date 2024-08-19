@@ -1,37 +1,47 @@
-import { useGetPostsQuery, useAddPostMutation, useDeletePostMutation } from "./components/api/apiSlice"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import PostCard from "./components/PostCard"
 import Navbar from "./components/Navbar"
+import { useDispatch } from "react-redux"
+import { getCurrUser, logout } from "./components/api/apiSlice"
+import { useNavigate } from "react-router-dom"
 
 const Home = () => {
   const [newPost, setNewPost] = useState("")
+  const navigate = useNavigate();
 
-  const {
-    data: posts,
-    isLoading,
-    isSuccess,
-    isError,
-    error
-  } = useGetPostsQuery();
-  const [addPost] = useAddPostMutation()
-  const [deletePost] = useDeletePostMutation()
+  const [name, setName] = useState('')
+  const dispatch = useDispatch()
+  useEffect(()=> {
+    dispatch(getCurrUser)
+    if(getCurrUser()) {
+      setName(getCurrUser().name)
+    } else {
+      setName('')
+    }
+  }, [dispatch])
 
   const handleSubmit = (e) => {
     e.preventDefault()
     //addTodo
-    if(newPost !== '') {
-      addPost({
-        id: String(posts.length + Math.floor(Math.random() * (70 - 10 + 1) + 10)),
-        title: newPost.substring(1, 20),
-        body: newPost,
-        tags: ['time'],
-        reactions: {likes: 0, dislikes: 0},
-        userId: Math.floor(Math.random() * (7000 - 500 + 1) + 500)
-      })
-    }
+    // if(newPost !== '') {
+    //   addPost({
+    //     id: String(posts.length + Math.floor(Math.random() * (70 - 10 + 1) + 10)),
+    //     title: newPost.substring(1, 20),
+    //     body: newPost,
+    //     reactions: {likes: 0, dislikes: 0},
+    //     datetime: new Date(),
+    //     user_id: 1
+    //   })
+    // }
       setNewPost('')
 
       console.log()
+  }
+
+  const handleLogout = () => {
+    dispatch(logout())
+    setName('')
+    navigate('/login')
   }
 
   const newPostForm = 
@@ -47,26 +57,19 @@ const Home = () => {
           </form>
         </div>
 
-  let content
-  if (isLoading) {
-    content = <p>Loading ...</p>
-  } else if (isSuccess) {
-    content = posts.map(post => {
-      return <PostCard key={post.id} userId={post.userId} postContent={post.body} 
-      deletePost={()=>deletePost({ id: post.id})}
-      />
-    })
-  } else if(isError) {
-    content = <p>{error}</p>
-  }
+  // let content = posts.map(post => {
+  //      <PostCard key={post.id} userId={post.user_id} postContent={post.body} datetime={post.datetime} postId={post.id}
+  //     deletePost={''}
+  //     />})
+      // ()=>deletePost({ id: post.id})
 
   return (
     <div className="w-full flex flex-col items-center gap-10">
-        <Navbar />
+        <Navbar params={name} handleLogout={handleLogout}/>
         <div className="w-96 flex flex-col items-center py-20 gap-10">
 
           {newPostForm}
-          {content}
+          {/* {content} */}
         </div>
     </div>
   )
