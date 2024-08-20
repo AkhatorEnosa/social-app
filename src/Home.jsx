@@ -70,8 +70,6 @@ const Home = () => {
         <div className="w-96 flex flex-col items-center py-20 gap-10">
 
           {newPostForm}
-          {/* {posts.loading ? console.log("loading") : posts.posts.map(post => console.log(post.id))} */}
-          {/* {console.log(posts.posts)} */}
           <div className="cards flex flex-col gap-5 justify-center items-center">
             {content}
           </div>
