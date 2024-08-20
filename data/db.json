@@ -1,36 +1,40 @@
 {
-  "posts": [
-    {
-      "id": "21",
-      "title": "his should work now",
-      "body": "This should work now oo",
-      "reactions": {
-        "likes": 0,
-        "dislikes": 0
-      },
-      "datetime": "2024-08-17T10:44:05.635Z",
-      "user_id": 1
-    },
-    {
-      "id": "54",
-      "title": "kbjkbkj",
-      "body": "jkbjkbkj",
-      "reactions": {
-        "likes": 0,
-        "dislikes": 0
-      },
-      "datetime": "2024-08-19T15:14:17.915Z",
-      "user_id": 1
-    }
-  ],
   "users": [
     {
       "id": "f0ea",
       "name": "Akhator Osakhogba",
       "u_name": "Gosab",
       "email": "aosakhogba@gmail.com",
-      "password": "pass1234",
-      "loggedIn": false
+      "password": "pass1234"
+    },
+    {
+      "id": "497b",
+      "name": "Osakhogba Akhator",
+      "u_name": "Aosa",
+      "email": "gosab1@yandex.com",
+      "password": "camiseta#"
+    }
+  ],
+  "posts": [
+    {
+      "id": "21",
+      "body": "This should work now oo",
+      "reactions": {
+        "likes": 0,
+        "bookmarks": 0
+      },
+      "datetime": "2024-08-17T10:44:05.635Z",
+      "user_id": "f0ea"
+    },
+    {
+      "id": "29",
+      "body": "The chair sat in the corner where it had been for over 25 years. The only difference was there was someone actually sitting in it. How long had it been since someone had done that? Ten years or more he imagined. Yet there was no denying the presence in the chair now.",
+      "reactions": {
+        "likes": 1,
+        "bookmarks": 1
+      },
+      "datetime": "2024-08-17T10:44:05.635Z",
+      "userId": "497b"
     }
   ],
   "likes": [

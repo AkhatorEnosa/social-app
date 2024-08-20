@@ -10,7 +10,9 @@ const PostCard = ({userId, postContent, deletePost, datetime, postId}) => {
         <div className="w-full flex gap-2 justify-between items-center pt-5 px-10 text-lg">
             <CiHeart className="hover:text-green-700"/>
             <CiBookmarkPlus className="hover:text-blue-600"/>
-            <CiTrash onClick={deletePost} className="hover:text-red-700" title={postId}/>
+            <CiTrash
+            //  onClick={deletePost} ÷\
+             className="hover:text-red-700" title={postId}/>
         </div>
     </div>
   )

@@ -56,24 +56,28 @@ const apiSlice = createSlice({
     extraReducers: builder => {
         builder
             .addCase(register.pending, state => {
-                state.loading = true
+                state.isLoading = true
             })
             .addCase(register.fulfilled, (state,action) => {
-                state.loading = false,
+                state.isLoading = false,
                 state.user = action.payload
             })
             .addCase(register.rejected, (state) => {
-                state.loading = false
+                state.isLoading = false
             })
             .addCase(login.pending, state => {
-                state.loading = true
+                state.isLoading = true
             })
             .addCase(login.fulfilled, (state,action) => {
-                state.loading = false,
+                state.isLoading = false,
                 state.user = action.payload
             })
             .addCase(login.rejected, (state) => {
-                state.loading = false
+                state.isLoading = false
+            })
+            .addCase(logout.fulfilled, (state) => {
+                state.isLoading = false,
+                state.user = undefined
             })
     }
 })

@@ -19,8 +19,7 @@ const Register = () => {
             name,
             u_name,
             email,
-            password,
-            loggedIn : false
+            password
         })).then(action => {
             localStorage.setItem("user", JSON.stringify({
                 id: action.payload.id,

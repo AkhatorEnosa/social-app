@@ -1,25 +1,38 @@
 /* eslint-disable react/prop-types */
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
+import { getCurrUser, logout } from "./api/apiSlice"
+import { useDispatch } from "react-redux"
+import { useEffect, useState } from "react"
 
-const Navbar = ({params, handleLogout}) => {
-  // const {
-  //   data: users } = useGetUserQuery();
-  // // let content;
+const Navbar = () => {
+  
+  const [name, setName] = useState('')
+  const dispatch = useDispatch()
+  const navigate = useNavigate()
 
-  // const findUser = users.find(user => user.u_name == id)
+  useEffect(()=> {
+    dispatch(getCurrUser)
+    if(getCurrUser()) {
+      setName(getCurrUser().name)
+    } else {
+      setName('')
+    }
+  }, [dispatch])
 
-  // if(findUser) {
-  //     console.log(findUser)
-  // }
+  const handleLogout = () => {
+    dispatch(logout())
+    setName('')
+    navigate('/login')
+  }
 
   return (
     <header className='w-full flex justify-between items-center px-20 py-5 shadow-sm'>
-        <h1 className='text-3xl font-black'>Wannabe Social</h1>
+        <Link to='/'> <h1 className='text-3xl font-black'>Wannabe Social</h1> </Link>
         <ul className='flex gap-5 justify-center items-center text-sm font-medium'>
-          { params ? <><li className="tracking-tight">{params}</li> <button className="btn btn-error text-white btn-sm" onClick={handleLogout}>Logout</button></> :
+           { name ? <><li className="tracking-tight">{name}</li> <button className="btn btn-error btn-outline text-white btn-sm" onClick={handleLogout}>Logout</button></> :
             <>
-              <Link to={'/login'}><li className="btn btn-info text-white">Login</li></Link>
-              <Link to={'/register'}><li className="btn btn-primary text-white">Register</li></Link>
+              <Link to={'/login'}><li className="btn btn-info btn-outline btn-sm text-white">Login</li></Link>
+              <Link to={'/register'}><li className="btn btn-primary btn-outline btn-sm text-white">Register</li></Link>
             </>
           }
         </ul>

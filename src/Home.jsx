@@ -1,16 +1,17 @@
 import { useEffect, useState } from "react"
 import PostCard from "./components/PostCard"
 import Navbar from "./components/Navbar"
-import { useDispatch } from "react-redux"
-import { getCurrUser, logout } from "./components/api/apiSlice"
-import { useNavigate } from "react-router-dom"
+import { useDispatch, useSelector } from "react-redux"
+import { getCurrUser } from "./components/api/apiSlice"
+import { fetchPosts } from "./components/api/PostSlice"
 
 const Home = () => {
   const [newPost, setNewPost] = useState("")
-  const navigate = useNavigate();
-
   const [name, setName] = useState('')
+
   const dispatch = useDispatch()
+  const posts = useSelector((state) => state.post)
+
   useEffect(()=> {
     dispatch(getCurrUser)
     if(getCurrUser()) {
@@ -18,6 +19,12 @@ const Home = () => {
     } else {
       setName('')
     }
+  }, [dispatch])
+
+  useEffect(() => {
+    setTimeout(() => {
+      dispatch(fetchPosts())
+    }, 2000);
   }, [dispatch])
 
   const handleSubmit = (e) => {
@@ -38,12 +45,6 @@ const Home = () => {
       console.log()
   }
 
-  const handleLogout = () => {
-    dispatch(logout())
-    setName('')
-    navigate('/login')
-  }
-
   const newPostForm = 
 
         <div className="w-full flex flex-col gap-10 justify-center items-center">
@@ -57,19 +58,23 @@ const Home = () => {
           </form>
         </div>
 
-  // let content = posts.map(post => {
-  //      <PostCard key={post.id} userId={post.user_id} postContent={post.body} datetime={post.datetime} postId={post.id}
-  //     deletePost={''}
-  //     />})
+  let content = posts.isLoading == false && posts.posts !== null ? posts.posts.map(post => (
+       <PostCard key={post.id} userId={post.user_id} postContent={post.body} datetime={post.datetime} postId={post.id}
+      deletePost={''}
+      />)) :  <div className="w-full h-56 flex flex-col justify-center items-center"><span className="loading loading-dots loading-lg "></span></div>
       // ()=>deletePost({ id: post.id})
 
   return (
     <div className="w-full flex flex-col items-center gap-10">
-        <Navbar params={name} handleLogout={handleLogout}/>
+        <Navbar params={name}/>
         <div className="w-96 flex flex-col items-center py-20 gap-10">
 
           {newPostForm}
-          {/* {content} */}
+          {/* {posts.loading ? console.log("loading") : posts.posts.map(post => console.log(post.id))} */}
+          {/* {console.log(posts.posts)} */}
+          <div className="cards flex flex-col gap-5 justify-center items-center">
+            {content}
+          </div>
         </div>
     </div>
   )
