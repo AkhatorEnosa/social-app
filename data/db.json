@@ -7,7 +7,8 @@
       "email": "aosakhogba@gmail.com",
       "gender": "Male",
       "password": "pass1234",
-      "u_img": "https://avatar.iran.liara.run/public/boy?username=Gosab"
+      "u_img": "https://avatar.iran.liara.run/public/boy?username=Gosab",
+      "logged_in": false
     },
     {
       "id": 2,
@@ -16,7 +17,8 @@
       "email": "user@user.com",
       "gender": "Male",
       "password": "12345",
-      "u_img": "https://avatar.iran.liara.run/public/boy?username=masory"
+      "u_img": "https://avatar.iran.liara.run/public/boy?username=masory",
+      "logged_in": false
     },
     {
       "id": 3,
@@ -25,7 +27,8 @@
       "email": "gosab1@yandex.com",
       "gender": "Male",
       "password": "12345",
-      "u_img": "https://avatar.iran.liara.run/public/boy?username=osa"
+      "u_img": "https://avatar.iran.liara.run/public/boy?username=osa",
+      "logged_in": false
     }
   ],
   "posts": [
@@ -37,6 +40,42 @@
         "dislikes": 0
       },
       "datetime": "Thu Aug 22 2024 17:08:50 GMT+0100 (West Africa Standard Time)",
+      "u_name": "Akhator Osakhogba",
+      "user_id": 1,
+      "u_img": "https://avatar.iran.liara.run/public/boy?username=Gosab"
+    },
+    {
+      "id": "8599",
+      "body": "Hasta la vista baby\n",
+      "reactions": {
+        "likes": 0,
+        "dislikes": 0
+      },
+      "datetime": "Thu Aug 22 2024 17:11:48 GMT+0100 (West Africa Standard Time)",
+      "u_name": "Osakhogba Akhator",
+      "user_id": 3,
+      "u_img": "https://avatar.iran.liara.run/public/boy?username=osa"
+    },
+    {
+      "id": "cac6",
+      "body": "iiiioi",
+      "reactions": {
+        "likes": 0,
+        "dislikes": 0
+      },
+      "datetime": "Thu Aug 22 2024 17:16:36 GMT+0100 (West Africa Standard Time)",
+      "u_name": "Akhator Osakhogba",
+      "user_id": 1,
+      "u_img": "https://avatar.iran.liara.run/public/boy?username=Gosab"
+    },
+    {
+      "id": "bffe",
+      "body": "I do not really mind this at all.",
+      "reactions": {
+        "likes": 0,
+        "dislikes": 0
+      },
+      "datetime": "Thu Aug 22 2024 18:10:01 GMT+0100 (West Africa Standard Time)",
       "u_name": "Akhator Osakhogba",
       "user_id": 1,
       "u_img": "https://avatar.iran.liara.run/public/boy?username=Gosab"

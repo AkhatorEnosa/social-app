@@ -8,6 +8,7 @@ import { addPost, fetchPosts } from "./components/api/PostSlice"
 const Home = () => {
   const [newPost, setNewPost] = useState("")
   const [name, setName] = useState('')
+  const [status, setStatus] = useState('')
   // const [userId, setUserId] = useState('')
   // const [allPosts, setAllPosts] = useState()
 
@@ -20,8 +21,10 @@ const Home = () => {
     currUserData
     if(getCurrUser()) {
       setName(getCurrUser().name)
+      setStatus(getCurrUser().logged_in)
     } else {
       setName('')
+      setStatus('')
     }
   }, [currUserData])
 
@@ -71,8 +74,8 @@ const Home = () => {
     const allPosts = posts.posts
     
     // sort posts before mapping
-    content = allPosts.toSorted((a,b) => b.id - a.id).map(post => (
-                <PostCard key={post.id} userId={post.user_id} uImg={post.u_img} uName={post.u_name} postContent={post.body} datetime={post.datetime} postId={post.id}
+    content = allPosts.toSorted((a,b) => b.datetime - a.datetime).map(post => (
+                <PostCard key={post.id} userId={post.user_id} status={status} uImg={post.u_img} uName={post.u_name} postContent={post.body} datetime={post.datetime} postId={post.id}
                 deletePost={''}
                 />))
   }else if(posts.error == true) {

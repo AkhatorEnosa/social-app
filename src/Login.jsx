@@ -25,7 +25,8 @@ const Login = () => {
                         id: action.payload.id,
                         name: action.payload.name,
                         email: action.payload.email,
-                        u_img: action.payload.u_img
+                        u_img: action.payload.u_img,
+                        logged_in: true
                         }))
                     navigate('/')
                 })
