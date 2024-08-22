@@ -32,15 +32,24 @@ const Home = () => {
       dispatch(fetchPosts())
     setInterval(() => {
       dispatch(fetchPosts())
-    }, 60000);
+    }, 3000000);
   }, [dispatch])
+
+// const randomizeLetters = () => {
+//   var str = "abcdefghijklmnopqrstuvwxyz";
+//     return str.split('').sort(function(){return 0.5-Math.random()}).join('').substring(10,11);
+// }
+
+  function randomNum(min, max) { // min and max range
+    return Math.floor(Math.random() * (max - min + 1) + min);
+  }
 
   const handleSubmit = (e) => {
     e.preventDefault()
       dispatch(fetchPosts())
     if(newPost !== '') {
       dispatch(addPost({
-        // id: posts.posts.length > 0 ? posts.posts.length + 1 : 1, //get correct id
+        id: randomNum(1290443493, 903438802823), //get correct id
         body: newPost,
         reactions: {likes: 0, dislikes: 0},
         datetime: datenow.toString(),
@@ -48,11 +57,8 @@ const Home = () => {
         user_id: currUserData.id,
         u_img: currUserData.u_img
       }))
-      console.log("Valid to send")
     }
       setNewPost('')
-
-      console.log()
   }
 
   const newPostForm = 
@@ -74,7 +80,7 @@ const Home = () => {
     const allPosts = posts.posts
     
     // sort posts before mapping
-    content = allPosts.toSorted((a,b) => b.datetime - a.datetime).map(post => (
+    content = allPosts.toSorted((a, b) => new Date(b.datetime) - new Date(a.datetime)).map(post => (
                 <PostCard key={post.id} userId={post.user_id} status={status} uImg={post.u_img} uName={post.u_name} postContent={post.body} datetime={post.datetime} postId={post.id}
                 deletePost={''}
                 />))
@@ -85,10 +91,6 @@ const Home = () => {
   } else {
     content = <div className="w-full h-56 flex flex-col justify-center items-center"><span className="loading loading-dots loading-lg text-secondary"></span></div>
   }
-  // let content = posts.isLoading == false && posts.posts !== null ? posts.posts.map(post => (
-  //      <PostCard key={post.id} userId={post.user_id} postContent={post.body} datetime={post.datetime} postId={post.id}
-  //     deletePost={''}
-  //     />)) :  <div className="w-full h-56 flex flex-col justify-center items-center"><span className="loading loading-dots loading-lg text-secondary"></span></div>
       // ()=>deletePost({ id: post.id})
 
   return (

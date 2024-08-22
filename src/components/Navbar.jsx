@@ -38,7 +38,7 @@ const Navbar = () => {
     <header className='w-full flex justify-between items-center px-20 py-5 shadow-sm'>
         <Link to='/'> <h1 className='text-base md:text-3xl font-black'>Wannabe Social</h1> </Link>
         <ul className='flex gap-5 justify-center items-center text-sm font-medium'>
-           { name ? <div className="flex flex-col gap-5 justify-center items-center"><div className="flex gap-2 justify-center items-center bg-black/5 px-2 py-1 rounded-full hover:shadow-sm cursor-pointer" onClick={toggleShowLogout}><img src={u_img} alt="profile_pic" className="w-10 h-10 border-[1px] border-black/30 rounded-full"/>{!showLogout ? <li className="tracking-tight">{name}</li> : <span className="text-error hover:underline" onClick={handleLogout}>Logout</span> }</div> </div> :
+           { name ? <div className="relative flex flex-col gap-5 justify-center items-center"><div className="flex gap-2 justify-center items-center hover:bg-black/5 px-2 py-1 rounded-full hover:shadow-lg cursor-pointer" onClick={toggleShowLogout}><img src={u_img} alt="profile_pic" className="w-10 h-10 border-[1px] border-black/30 rounded-full"/><li className="tracking-tight">{name}</li></div> <div className={!showLogout ? "hidden" : "cursor-pointer absolute w-full text-right border-t-[1px] top-[50px] mt-2 px-2 text-error hover:underline"} onClick={handleLogout}><p>Logout</p></div></div> :
             <>
               <Link to={'/login'}><li className="text-info hover:underline">Login</li></Link>
               <Link to={'/register'}><li className="text-primary hover:underline">Register</li></Link>
