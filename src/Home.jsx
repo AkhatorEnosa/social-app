@@ -94,9 +94,9 @@ const Home = () => {
       // ()=>deletePost({ id: post.id})
 
   return (
-    <div className="w-full flex flex-col items-center gap-10">
+    <div className="w-full flex flex-col items-center">
         <Navbar params={name}/>
-        <div className="w-96 flex flex-col items-center py-20 gap-10">
+        <div className="w-96 flex flex-col items-center pt-5 pb-10 gap-10">
 
           {newPostForm}
           <div className="w-full flex flex-col gap-5 justify-center items-center">
