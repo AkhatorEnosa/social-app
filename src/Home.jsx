@@ -3,43 +3,50 @@ import PostCard from "./components/PostCard"
 import Navbar from "./components/Navbar"
 import { useDispatch, useSelector } from "react-redux"
 import { getCurrUser } from "./components/api/apiSlice"
-import { fetchPosts } from "./components/api/PostSlice"
+import { addPost, fetchPosts } from "./components/api/PostSlice"
 
 const Home = () => {
   const [newPost, setNewPost] = useState("")
   const [name, setName] = useState('')
+  // const [userId, setUserId] = useState('')
+  // const [allPosts, setAllPosts] = useState()
 
   const dispatch = useDispatch()
   const posts = useSelector((state) => state.post)
+  const currUserData = dispatch(getCurrUser)
+  const datenow = new Date()
 
   useEffect(()=> {
-    dispatch(getCurrUser)
+    currUserData
     if(getCurrUser()) {
       setName(getCurrUser().name)
     } else {
       setName('')
     }
-  }, [dispatch])
+  }, [currUserData])
 
   useEffect(() => {
-    setTimeout(() => {
       dispatch(fetchPosts())
-    }, 2000);
+    setInterval(() => {
+      dispatch(fetchPosts())
+    }, 60000);
   }, [dispatch])
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    //addTodo
-    // if(newPost !== '') {
-    //   addPost({
-    //     id: String(posts.length + Math.floor(Math.random() * (70 - 10 + 1) + 10)),
-    //     title: newPost.substring(1, 20),
-    //     body: newPost,
-    //     reactions: {likes: 0, dislikes: 0},
-    //     datetime: new Date(),
-    //     user_id: 1
-    //   })
-    // }
+      dispatch(fetchPosts())
+    if(newPost !== '') {
+      dispatch(addPost({
+        // id: posts.posts.length > 0 ? posts.posts.length + 1 : 1, //get correct id
+        body: newPost,
+        reactions: {likes: 0, dislikes: 0},
+        datetime: datenow.toString(),
+        u_name: currUserData.name,
+        user_id: currUserData.id,
+        u_img: currUserData.u_img
+      }))
+      console.log("Valid to send")
+    }
       setNewPost('')
 
       console.log()
@@ -54,14 +61,31 @@ const Home = () => {
               placeholder="What do you have in mind?"
               value={newPost}
               onChange={(e) => setNewPost(e.target.value)}></textarea>
-              <button className="btn btn-primary">Post</button>
+              <button className={newPost !== '' ? "btn btn-secondary" : "hidden"}>Post</button>
           </form>
         </div>
 
-  let content = posts.isLoading == false && posts.posts !== null ? posts.posts.map(post => (
-       <PostCard key={post.id} userId={post.user_id} postContent={post.body} datetime={post.datetime} postId={post.id}
-      deletePost={''}
-      />)) :  <div className="w-full h-56 flex flex-col justify-center items-center"><span className="loading loading-dots loading-lg "></span></div>
+  let content;
+  
+  if(posts.isLoading == false && posts.posts !== null && posts.posts.length > 0) {
+    const allPosts = posts.posts
+    
+    // sort posts before mapping
+    content = allPosts.toSorted((a,b) => b.id - a.id).map(post => (
+                <PostCard key={post.id} userId={post.user_id} uImg={post.u_img} uName={post.u_name} postContent={post.body} datetime={post.datetime} postId={post.id}
+                deletePost={''}
+                />))
+  }else if(posts.error == true) {
+    content = <div className="w-full h-56 flex flex-col justify-center items-center">Network error. Try reload page.</div>
+  }else if (posts.isLoading == false && posts.posts !== null && posts.posts.length === 0) {
+    content = <div className="w-full h-56 flex flex-col justify-center items-center">No posts to see yet</div>
+  } else {
+    content = <div className="w-full h-56 flex flex-col justify-center items-center"><span className="loading loading-dots loading-lg text-secondary"></span></div>
+  }
+  // let content = posts.isLoading == false && posts.posts !== null ? posts.posts.map(post => (
+  //      <PostCard key={post.id} userId={post.user_id} postContent={post.body} datetime={post.datetime} postId={post.id}
+  //     deletePost={''}
+  //     />)) :  <div className="w-full h-56 flex flex-col justify-center items-center"><span className="loading loading-dots loading-lg text-secondary"></span></div>
       // ()=>deletePost({ id: post.id})
 
   return (
@@ -70,7 +94,7 @@ const Home = () => {
         <div className="w-96 flex flex-col items-center py-20 gap-10">
 
           {newPostForm}
-          <div className="cards flex flex-col gap-5 justify-center items-center">
+          <div className="w-full flex flex-col gap-5 justify-center items-center">
             {content}
           </div>
         </div>

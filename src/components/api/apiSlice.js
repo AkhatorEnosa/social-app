@@ -3,18 +3,20 @@ import axios from "axios";
 
 let initialState = {
         loading: false,
-        user: undefined,
+        user: [],
         error: null
     }
 
 export const register  = createAsyncThunk("user/register", async(userData, thunkAPI) => {
-    if(userData.name === "" || userData.u_name === "" || userData.email === "" || userData.password === "") {
+    if(userData.name === "" || userData.u_name === "" || userData.gender === "" || userData.email === "" || userData.password === "") {
         userData = initialState
     } else {
         try {
             const res = await axios.post('http://localhost:1997/users', userData)
+            // console.log(res.data)
             return res.data
         } catch (err) {
+            console.log('errro')
             return thunkAPI.rejectWithValue(err.res.data.errors)
         }
     }
@@ -56,27 +58,29 @@ const apiSlice = createSlice({
     extraReducers: builder => {
         builder
             .addCase(register.pending, state => {
-                state.isLoading = true
+                state.loading = true
             })
             .addCase(register.fulfilled, (state,action) => {
-                state.isLoading = false,
-                state.user = action.payload
+                state.loading = false,
+                state.user = [...state.user, action.payload]
             })
             .addCase(register.rejected, (state) => {
-                state.isLoading = false
+                state.loading = false,
+                state.user = null,
+                state.error = true
             })
             .addCase(login.pending, state => {
-                state.isLoading = true
+                state.loading = true
             })
             .addCase(login.fulfilled, (state,action) => {
-                state.isLoading = false,
-                state.user = action.payload
+                    state.loading = false,
+                    state.user = action.payload
             })
             .addCase(login.rejected, (state) => {
-                state.isLoading = false
+                state.loading = false
             })
             .addCase(logout.fulfilled, (state) => {
-                state.isLoading = false,
+                state.loading = false,
                 state.user = undefined
             })
     }

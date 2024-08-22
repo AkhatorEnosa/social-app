@@ -24,7 +24,8 @@ const Login = () => {
                     localStorage.setItem("user", JSON.stringify({
                         id: action.payload.id,
                         name: action.payload.name,
-                        email: action.payload.email
+                        email: action.payload.email,
+                        u_img: action.payload.u_img
                         }))
                     navigate('/')
                 })
@@ -46,9 +47,9 @@ const Login = () => {
             <h1 className="text-2xl font-medium">Login</h1>
                 <input type="email" name="email" id="email" value={email} placeholder="Email Address" className="input input-bordered input-md" onChange={(e)=>setEmail(e.target.value)}/>
                 <input type="password" name="password" id="password" value={password} placeholder="Password" className="input input-bordered input-md" autoComplete="" onChange={(e)=>setPassword(e.target.value)}/>
-                <button className="btn btn-primary" onClick={handleSubmit}>{loading ? 'Loading' : 'Login'}</button></>
+                <button className="btn btn-secondary" onClick={handleSubmit}>{loading ? 'Loading' : 'Login'}</button></>
         </div>
-        <p className="text-xs">Don&lsquo;t have an account? <Link to="/register" className="text-blue-500 cursor-pointer">Register</Link></p>
+        <p className="text-xs">Don&lsquo;t have an account? <Link to="/register" className="text-secondary cursor-pointer">Register</Link></p>
     </div>
   )
 }

@@ -1,40 +1,45 @@
 {
   "users": [
     {
-      "id": "f0ea",
+      "id": 1,
       "name": "Akhator Osakhogba",
       "u_name": "Gosab",
       "email": "aosakhogba@gmail.com",
-      "password": "pass1234"
+      "gender": "Male",
+      "password": "pass1234",
+      "u_img": "https://avatar.iran.liara.run/public/boy?username=Gosab"
     },
     {
-      "id": "497b",
+      "id": 2,
+      "name": "Mason Mansory",
+      "u_name": "masory",
+      "email": "user@user.com",
+      "gender": "Male",
+      "password": "12345",
+      "u_img": "https://avatar.iran.liara.run/public/boy?username=masory"
+    },
+    {
+      "id": 3,
       "name": "Osakhogba Akhator",
-      "u_name": "Aosa",
+      "u_name": "osa",
       "email": "gosab1@yandex.com",
-      "password": "camiseta#"
+      "gender": "Male",
+      "password": "12345",
+      "u_img": "https://avatar.iran.liara.run/public/boy?username=osa"
     }
   ],
   "posts": [
     {
-      "id": "21",
-      "body": "This should work now oo",
+      "id": "223f",
+      "body": "the next xenophobia about to be epic",
       "reactions": {
         "likes": 0,
-        "bookmarks": 0
+        "dislikes": 0
       },
-      "datetime": "2024-08-17T10:44:05.635Z",
-      "user_id": "f0ea"
-    },
-    {
-      "id": "29",
-      "body": "The chair sat in the corner where it had been for over 25 years. The only difference was there was someone actually sitting in it. How long had it been since someone had done that? Ten years or more he imagined. Yet there was no denying the presence in the chair now.",
-      "reactions": {
-        "likes": 1,
-        "bookmarks": 1
-      },
-      "datetime": "2024-08-17T10:44:05.635Z",
-      "userId": "497b"
+      "datetime": "Thu Aug 22 2024 17:08:50 GMT+0100 (West Africa Standard Time)",
+      "u_name": "Akhator Osakhogba",
+      "user_id": 1,
+      "u_img": "https://avatar.iran.liara.run/public/boy?username=Gosab"
     }
   ],
   "likes": [

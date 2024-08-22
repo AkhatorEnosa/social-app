@@ -3,18 +3,26 @@ import axios from "axios";
 
 let initialState = {
     isLoading: false,
-    posts: null,
+    posts: [],
     error: false
 }
 
 export const fetchPosts  = createAsyncThunk("user/post", async() => {
         try {
             const res = await axios.get('http://localhost:1997/posts')
-            // console.log(res.data)
             return res.data
         } catch (err) {
             return err
         }
+})
+
+export const addPost = createAsyncThunk("user/addPost", async(postData, thunkAPI) => {
+    try {
+        const res = await axios.post("http://localhost:1997/posts", postData)
+        return res.data
+    } catch (err) {
+        return thunkAPI.rejectWithValue(err.res.data.errors)
+    }
 })
 
 const PostSlice = createSlice({
@@ -31,6 +39,19 @@ const PostSlice = createSlice({
                 state.posts = action.payload
             })
             .addCase(fetchPosts.rejected, (state) => {
+                state.isLoading = false,
+                state.posts = null,
+                state.error = true
+            })
+            .addCase(addPost.pending, (state) => {
+                state.isLoading = true,
+                state.posts = null
+            })
+            .addCase(addPost.fulfilled, (state, action) => {
+                state.isLoading = false,
+                state.posts = [...state.posts, action.payload]
+            })
+            .addCase(addPost.rejected, (state) => {
                 state.isLoading = false,
                 state.posts = null,
                 state.error = true
