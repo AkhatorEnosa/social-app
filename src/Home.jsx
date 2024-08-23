@@ -3,13 +3,13 @@ import PostCard from "./components/PostCard"
 import Navbar from "./components/Navbar"
 import { useDispatch, useSelector } from "react-redux"
 import { getCurrUser } from "./components/api/apiSlice"
-import { addPost, fetchPosts } from "./components/api/PostSlice"
+import { addPost, deletePost, fetchPosts } from "./components/api/PostSlice"
 
 const Home = () => {
   const [newPost, setNewPost] = useState("")
   const [name, setName] = useState('')
   const [status, setStatus] = useState('')
-  // const [userId, setUserId] = useState('')
+  const [uid, setUid] = useState('')
   // const [allPosts, setAllPosts] = useState()
 
   const dispatch = useDispatch()
@@ -22,6 +22,7 @@ const Home = () => {
     if(getCurrUser()) {
       setName(getCurrUser().name)
       setStatus(getCurrUser().logged_in)
+      setUid(getCurrUser().id)
     } else {
       setName('')
       setStatus('')
@@ -49,9 +50,9 @@ const Home = () => {
       dispatch(fetchPosts())
     if(newPost !== '') {
       dispatch(addPost({
-        id: randomNum(1290443493, 903438802823), //get correct id
+        id: String(randomNum(1290443493, 903438802823)), //get correct id
         body: newPost,
-        reactions: {likes: 0, dislikes: 0},
+        reactions: {likes: 0, bookmarks: 0},
         datetime: datenow.toString(),
         u_name: currUserData.name,
         user_id: currUserData.id,
@@ -81,8 +82,17 @@ const Home = () => {
     
     // sort posts before mapping
     content = allPosts.toSorted((a, b) => new Date(b.datetime) - new Date(a.datetime)).map(post => (
-                <PostCard key={post.id} userId={post.user_id} status={status} uImg={post.u_img} uName={post.u_name} postContent={post.body} datetime={post.datetime} postId={post.id}
-                deletePost={''}
+                <PostCard 
+                  key={post.id} 
+                  userId={post.user_id == uid ? true : false} 
+                  status={status} 
+                  uImg={post.u_img} 
+                  uName={post.u_name} 
+                  postContent={post.body} 
+                  like={post.reactions.likes} 
+                  bookmark={post.reactions.bookmarks} 
+                  datetime={post.datetime} postId={post.id}
+                  deletePost={()=> dispatch(deletePost(post.id))}
                 />))
   }else if(posts.error == true) {
     content = <div className="w-full h-56 flex flex-col justify-center items-center">Network error. Try reload page.</div>

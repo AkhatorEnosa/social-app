@@ -1,7 +1,7 @@
 {
   "users": [
     {
-      "id": 1,
+      "id": "1",
       "name": "Akhator Osakhogba",
       "u_name": "Gosab",
       "email": "aosakhogba@gmail.com",
@@ -11,7 +11,7 @@
       "logged_in": false
     },
     {
-      "id": 2,
+      "id": "2",
       "name": "Mason Mansory",
       "u_name": "masory",
       "email": "user@user.com",
@@ -21,7 +21,7 @@
       "logged_in": false
     },
     {
-      "id": 3,
+      "id": "3",
       "name": "Osakhogba Akhator",
       "u_name": "osa",
       "email": "gosab1@yandex.com",
@@ -33,88 +33,28 @@
   ],
   "posts": [
     {
-      "id": 891153689573,
-      "body": "Ok?",
+      "id": "402354338317",
+      "body": "jkjbkjkj",
       "reactions": {
         "likes": 0,
-        "dislikes": 0
+        "bookmarks": 0
       },
-      "datetime": "Thu Aug 22 2024 19:11:52 GMT+0100 (West Africa Standard Time)",
-      "u_name": "Mason Mansory",
-      "user_id": 2,
-      "u_img": "https://avatar.iran.liara.run/public/boy?username=masory"
+      "datetime": "Fri Aug 23 2024 10:28:08 GMT+0100 (West Africa Standard Time)",
+      "u_name": "Akhator Osakhogba",
+      "user_id": "1",
+      "u_img": "https://avatar.iran.liara.run/public/boy?username=Gosab"
     },
     {
-      "id": 494981897367,
-      "body": "Amando",
+      "id": "612872306994",
+      "body": "hjvhjhv",
       "reactions": {
         "likes": 0,
-        "dislikes": 0
+        "bookmarks": 0
       },
-      "datetime": "Thu Aug 22 2024 19:12:03 GMT+0100 (West Africa Standard Time)",
-      "u_name": "Mason Mansory",
-      "user_id": 2,
-      "u_img": "https://avatar.iran.liara.run/public/boy?username=masory"
-    },
-    {
-      "id": 577516750993,
-      "body": "sjnkjs",
-      "reactions": {
-        "likes": 0,
-        "dislikes": 0
-      },
-      "datetime": "Thu Aug 22 2024 19:12:06 GMT+0100 (West Africa Standard Time)",
-      "u_name": "Mason Mansory",
-      "user_id": 2,
-      "u_img": "https://avatar.iran.liara.run/public/boy?username=masory"
-    },
-    {
-      "id": 271517361300,
-      "body": "Random sorting",
-      "reactions": {
-        "likes": 0,
-        "dislikes": 0
-      },
-      "datetime": "Thu Aug 22 2024 19:12:17 GMT+0100 (West Africa Standard Time)",
-      "u_name": "Mason Mansory",
-      "user_id": 2,
-      "u_img": "https://avatar.iran.liara.run/public/boy?username=masory"
-    },
-    {
-      "id": 608769685493,
-      "body": "Uhmmmm",
-      "reactions": {
-        "likes": 0,
-        "dislikes": 0
-      },
-      "datetime": "Thu Aug 22 2024 19:12:23 GMT+0100 (West Africa Standard Time)",
-      "u_name": "Mason Mansory",
-      "user_id": 2,
-      "u_img": "https://avatar.iran.liara.run/public/boy?username=masory"
-    },
-    {
-      "id": 568606961863,
-      "body": "Any which way now",
-      "reactions": {
-        "likes": 0,
-        "dislikes": 0
-      },
-      "datetime": "Thu Aug 22 2024 19:25:57 GMT+0100 (West Africa Standard Time)",
-      "u_name": "Mason Mansory",
-      "user_id": 2,
-      "u_img": "https://avatar.iran.liara.run/public/boy?username=masory"
-    },
-    {
-      "id": 66270798002,
-      "body": "weit...",
-      "reactions": {
-        "likes": 0,
-        "dislikes": 0
-      },
-      "datetime": "Thu Aug 22 2024 19:26:09 GMT+0100 (West Africa Standard Time)",
-      "u_name": "Mason Mansory",
-      "user_id": 2,
-      "u_img": "https://avatar.iran.liara.run/public/boy?username=masory"
+      "datetime": "Fri Aug 23 2024 10:28:11 GMT+0100 (West Africa Standard Time)",
+      "u_name": "Akhator Osakhogba",
+      "user_id": "1",
+      "u_img": "https://avatar.iran.liara.run/public/boy?username=Gosab"
     }
   ],
   "likes": [

@@ -25,6 +25,11 @@ export const addPost = createAsyncThunk("user/addPost", async(postData, thunkAPI
     }
 })
 
+export const deletePost = createAsyncThunk("user/deletePost", async(id) => {
+    await axios.delete(`http://localhost:1997/posts/${id}`)
+    return id
+})
+
 const PostSlice = createSlice({
     name: 'posts',
     initialState,
@@ -52,6 +57,17 @@ const PostSlice = createSlice({
                 state.posts = [...state.posts, action.payload]
             })
             .addCase(addPost.rejected, (state) => {
+                state.isLoading = false,
+                state.posts = null,
+                state.error = true
+            })
+            .addCase(deletePost.fulfilled, (state, action) => {
+                const updatedPosts = state.posts.filter((post) => post.id !== action.payload)
+                state.isLoading = false,
+                state.posts = updatedPosts
+                state.error = false
+            })
+            .addCase(deletePost.rejected, (state) => {
                 state.isLoading = false,
                 state.posts = null,
                 state.error = true
