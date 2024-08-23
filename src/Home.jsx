@@ -62,9 +62,10 @@ const Home = () => {
       setNewPost('')
   }
 
-  const newPostForm = 
+  let newPostForm;
+  let content;
 
-        <div className="w-full flex flex-col gap-10 justify-center items-center">
+        {currUserData ? newPostForm = <div className="w-full flex flex-col gap-10 justify-center items-center">
           <form onSubmit={handleSubmit} className="w-full flex flex-col gap-5">
             <textarea rows={5} name="post" id="post" 
               className="rounded-lg p-2 placeholder:text-sm"
@@ -73,9 +74,8 @@ const Home = () => {
               onChange={(e) => setNewPost(e.target.value)}></textarea>
               <button className={newPost !== '' ? "btn btn-secondary" : "hidden"}>Post</button>
           </form>
-        </div>
+        </div> : ''}
 
-  let content;
   
   if(posts.isLoading == false && posts.posts !== null && posts.posts.length > 0) {
     const allPosts = posts.posts
@@ -109,8 +109,8 @@ const Home = () => {
         <Navbar params={name}/>
         <div className="w-96 flex flex-col items-center pt-5 pb-10 gap-10">
 
-          {newPostForm}
           <div className="w-full flex flex-col gap-5 justify-center items-center">
+            {newPostForm}
             {content}
           </div>
         </div>
