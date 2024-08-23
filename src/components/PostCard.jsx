@@ -21,9 +21,7 @@ const PostCard = ({userId, status, uImg, uName, postContent, like, bookmark, del
           status ? <div className="w-full flex gap-2 justify-between items-center pt-5 px-10 text-xs">
               <span className="flex justify-center items-center gap-1 hover:text-green-700"><FaHeart className=" text-sm"/>{like} Like</span>
               <span className="flex justify-center items-center gap-1 hover:text-blue-600"><FaBookmark className=" text-sm"/>{bookmark} Bookmark</span>
-             {userId ? <span className="flex justify-center items-center gap-1 hover:text-red-700"><FaTrash
-               onClick={deletePost}
-                className=" text-sm" title={postId}/> Delete</span> : '' }
+             {userId ? <span className="flex justify-center items-center gap-1 hover:text-red-700" onClick={deletePost}><FaTrash className=" text-sm" title={postId}/> Delete</span> : '' }
           </div> : ''
         }
     </div>

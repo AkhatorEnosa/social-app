@@ -91,7 +91,8 @@ const Home = () => {
                   postContent={post.body} 
                   like={post.reactions.likes} 
                   bookmark={post.reactions.bookmarks} 
-                  datetime={post.datetime} postId={post.id}
+                  datetime={post.datetime} 
+                  postId={post.id}
                   deletePost={()=> dispatch(deletePost(post.id))}
                 />))
   }else if(posts.error == true) {
