@@ -3,17 +3,16 @@ import PostCard from "./components/PostCard"
 import Navbar from "./components/Navbar"
 import { useDispatch, useSelector } from "react-redux"
 import { getCurrUser } from "./components/api/apiSlice"
-import { addPost, deletePost, fetchPosts } from "./components/api/PostSlice"
+import { addPost,  deletePost, fetchPosts } from "./components/api/PostSlice"
 
 const Home = () => {
   const [newPost, setNewPost] = useState("")
   const [name, setName] = useState('')
   const [status, setStatus] = useState('')
   const [uid, setUid] = useState('')
-  // const [allPosts, setAllPosts] = useState()
 
   const dispatch = useDispatch()
-  const posts = useSelector((state) => state.post)
+  const posts = useSelector((state) => state.post) //get redux state
   const currUserData = dispatch(getCurrUser)
   const datenow = new Date()
 
@@ -33,8 +32,9 @@ const Home = () => {
       dispatch(fetchPosts())
     setInterval(() => {
       dispatch(fetchPosts())
-    }, 3000000);
+    }, 300000);
   }, [dispatch])
+
 
 // const randomizeLetters = () => {
 //   var str = "abcdefghijklmnopqrstuvwxyz";
@@ -52,7 +52,6 @@ const Home = () => {
       dispatch(addPost({
         id: String(randomNum(1290443493, 903438802823)), //get correct id
         body: newPost,
-        reactions: {likes: 0, bookmarks: 0},
         datetime: datenow.toString(),
         u_name: currUserData.name,
         user_id: currUserData.id,
@@ -89,8 +88,7 @@ const Home = () => {
                   uImg={post.u_img} 
                   uName={post.u_name} 
                   postContent={post.body} 
-                  like={post.reactions.likes} 
-                  bookmark={post.reactions.bookmarks} 
+                  bookmarks={post.bookmarks} 
                   datetime={post.datetime} 
                   postId={post.id}
                   deletePost={()=> dispatch(deletePost(post.id))}
@@ -105,9 +103,9 @@ const Home = () => {
       // ()=>deletePost({ id: post.id})
 
   return (
-    <div className="w-full flex flex-col items-center">
+    <div className="w-full flex flex-col items-center p-0 m-0">
         <Navbar params={name}/>
-        <div className="w-96 flex flex-col items-center pt-5 pb-10 gap-10">
+        <div className="w-96 flex flex-col items-center pt-28 pb-10 gap-10">
 
           <div className="w-full flex flex-col gap-5 justify-center items-center">
             {newPostForm}

@@ -1,62 +1,33 @@
 {
   "users": [
     {
-      "id": "1",
+      "id": 1,
       "name": "Akhator Osakhogba",
       "u_name": "Gosab",
       "email": "aosakhogba@gmail.com",
       "gender": "Male",
       "password": "pass1234",
-      "u_img": "https://avatar.iran.liara.run/public/boy?username=Gosab",
-      "logged_in": false
-    },
-    {
-      "id": "2",
-      "name": "Mason Mansory",
-      "u_name": "masory",
-      "email": "user@user.com",
-      "gender": "Male",
-      "password": "12345",
-      "u_img": "https://avatar.iran.liara.run/public/boy?username=masory",
-      "logged_in": false
-    },
-    {
-      "id": "3",
-      "name": "Osakhogba Akhator",
-      "u_name": "osa",
-      "email": "gosab1@yandex.com",
-      "gender": "Male",
-      "password": "12345",
-      "u_img": "https://avatar.iran.liara.run/public/boy?username=osa",
-      "logged_in": false
+      "u_img": "https://avatar.iran.liara.run/public/boy?username=Gosab"
     }
   ],
   "posts": [
     {
-      "id": "856389310495",
-      "body": "lknlknl",
-      "reactions": {
-        "likes": 0,
-        "bookmarks": 0
-      },
-      "datetime": "Fri Aug 23 2024 10:50:38 GMT+0100 (West Africa Standard Time)",
+      "id": "635033313118",
+      "body": "AMAZING",
+      "datetime": "Sun Aug 25 2024 15:21:21 GMT+0100 (West Africa Standard Time)",
       "u_name": "Akhator Osakhogba",
-      "user_id": "1",
+      "user_id": 1,
+      "u_img": "https://avatar.iran.liara.run/public/boy?username=Gosab"
+    },
+    {
+      "id": "398815636248",
+      "body": "Ymmm",
+      "datetime": "Sun Aug 25 2024 15:21:26 GMT+0100 (West Africa Standard Time)",
+      "u_name": "Akhator Osakhogba",
+      "user_id": 1,
       "u_img": "https://avatar.iran.liara.run/public/boy?username=Gosab"
     }
   ],
-  "likes": [
-    {
-      "id": "1",
-      "post_id": 1,
-      "user_id": 1
-    }
-  ],
-  "bookmarks": [
-    {
-      "id": "1",
-      "post_id": 1,
-      "user_id": 1
-    }
-  ]
+  "likes": [],
+  "bookmarks": []
 }

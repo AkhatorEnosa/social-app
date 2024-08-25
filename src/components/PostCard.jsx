@@ -1,7 +1,7 @@
 import { FaBookmark, FaHeart, FaTrash } from "react-icons/fa"
 
 /* eslint-disable react/prop-types */
-const PostCard = ({userId, status, uImg, uName, postContent, like, bookmark, deletePost, datetime, postId}) => {
+const PostCard = ({userId, status, uImg, uName, postContent, liked, likes, bookmarks, likeToggle, deletePost, datetime, postId}) => {
   return ( 
     <div className="w-full py-5 px-3 flex flex-col items-start text-sm rounded-md shadow-md hover:bg-slate-200/50 duration-200 transition-all cursor-pointer">
         <div className="flex gap-2">
@@ -19,8 +19,8 @@ const PostCard = ({userId, status, uImg, uName, postContent, like, bookmark, del
         
         {
           status ? <div className="w-full flex gap-2 justify-between items-center pt-5 px-10 text-xs">
-              <span className="flex justify-center items-center gap-1 hover:text-green-700"><FaHeart className=" text-sm"/>{like} Like</span>
-              <span className="flex justify-center items-center gap-1 hover:text-blue-600"><FaBookmark className=" text-sm"/>{bookmark} Bookmark</span>
+              <span className="flex justify-center items-center gap-1 hover:text-green-700" onClick={likeToggle}><FaHeart className={!liked ? " text-sm" : "text-green-700 text-sm"}/>{likes} Like</span>
+              <span className="flex justify-center items-center gap-1 hover:text-blue-600"><FaBookmark className=" text-sm"/>{bookmarks} Bookmark</span>
              {userId ? <span className="flex justify-center items-center gap-1 hover:text-red-700" onClick={deletePost}><FaTrash className=" text-sm" title={postId}/> Delete</span> : '' }
           </div> : ''
         }

@@ -57,10 +57,10 @@ const Register = () => {
 
 
   return (
-    <div className="w-full flex flex-col gap-20 pb-20 justify-center items-center">
+    <div className="w-full flex flex-col gap-10 pb-20 items-center">
     <Navbar />
 
-        <div className="w-96 flex flex-col gap-10 border-[1px] border-black/20 rounded-md p-4">
+        <div className="w-96 flex flex-col gap-10 mt-32 border-[1px] border-black/20 rounded-md p-4">
             <h1 className="text-2xl font-medium">Register</h1>
             <form onSubmit={handleSubmit} className="flex flex-col gap-5">
                 <input type="text" name="name" id="name" value={name} placeholder="Fullname" className="w-full input input-bordered input-md" onChange={(e)=>setName(e.target.value)}/>

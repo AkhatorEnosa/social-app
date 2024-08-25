@@ -4,10 +4,11 @@ import axios from "axios";
 let initialState = {
     isLoading: false,
     posts: [],
+    likes: [],
     error: false
 }
 
-export const fetchPosts  = createAsyncThunk("user/post", async() => {
+export const fetchPosts  = createAsyncThunk("post/post", async() => {
         try {
             const res = await axios.get('http://localhost:1997/posts')
             return res.data
@@ -16,7 +17,7 @@ export const fetchPosts  = createAsyncThunk("user/post", async() => {
         }
 })
 
-export const addPost = createAsyncThunk("user/addPost", async(postData, thunkAPI) => {
+export const addPost = createAsyncThunk("post/addPost", async(postData, thunkAPI) => {
     try {
         const res = await axios.post("http://localhost:1997/posts", postData)
         return res.data
@@ -25,7 +26,7 @@ export const addPost = createAsyncThunk("user/addPost", async(postData, thunkAPI
     }
 })
 
-export const deletePost = createAsyncThunk("user/deletePost", async(id) => {
+export const deletePost = createAsyncThunk("post/deletePost", async(id) => {
     await axios.delete(`http://localhost:1997/posts/${id}`)
     return id
 })
@@ -62,7 +63,7 @@ const PostSlice = createSlice({
                 state.error = true
             })
             .addCase(deletePost.fulfilled, (state, action) => {
-                const updatedPosts = state.posts.filter((post) => post.id !== action.payload)
+                const updatedPosts = state.posts.filter(post => post.id !== action.payload)
                 state.isLoading = false,
                 state.posts = updatedPosts
                 state.error = false
