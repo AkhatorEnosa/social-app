@@ -3,7 +3,7 @@ import PostCard from "./components/PostCard"
 import Navbar from "./components/Navbar"
 import { useDispatch, useSelector } from "react-redux"
 import { getCurrUser } from "./components/api/apiSlice"
-import { addLike, addPost,  deletePost, fetchLikes, fetchPosts, removeLike } from "./components/api/PostSlice"
+import { addBookmark, addLike, addPost,  deletePost, fetchBookmarks, fetchLikes, fetchPosts, fetchSinglePost, removeBookmark, removeLike } from "./components/api/PostSlice"
 
 const Home = () => {
   const [newPost, setNewPost] = useState("")
@@ -31,9 +31,11 @@ const Home = () => {
   useEffect(() => {
       dispatch(fetchPosts())
       dispatch(fetchLikes())
+      dispatch(fetchBookmarks())
     setInterval(() => {
       dispatch(fetchLikes())
       dispatch(fetchPosts())
+      dispatch(fetchBookmarks())
     }, 300000);
   }, [dispatch])
 
@@ -56,8 +58,7 @@ const Home = () => {
         datetime: datenow.toString(),
         u_name: currUserData.name,
         user_id: currUserData.id,
-        u_img: currUserData.u_img,
-        likesCount: 0
+        u_img: currUserData.u_img
       }))
       dispatch(fetchPosts())
     }
@@ -79,6 +80,28 @@ const Home = () => {
     if(posts.likes !== null) {
       const filterLiked = posts.likes.find(like => (like.postId == id) && (like.userId == uid))
       if(filterLiked) {
+        return true
+      } else {
+        return false
+      }
+    }
+  }
+
+   const countBookmarks = (id) => {
+    if(posts.bookmarks !== null) {
+      const filterBookmarks = posts.bookmarks.filter(bookmark => bookmark.postId == id)
+      if(filterBookmarks) {
+        return filterBookmarks.length
+      } else {
+        console.log("Jembe")
+      }
+    }
+  }
+
+  const bookmarkedPost = (id) => {
+    if(posts.bookmarks !== null) {
+      const filterBookmarked = posts.bookmarks.find(bookmark => (bookmark.postId == id) && (bookmark.userId == uid))
+      if(filterBookmarked) {
         return true
       } else {
         return false
@@ -112,12 +135,13 @@ const Home = () => {
                   status={status} 
                   uImg={post.u_img} 
                   uName={post.u_name} 
-                  postContent={post.body} 
-                  bookmarks={post.bookmarks} 
+                  postContent={post.body}
                   datetime={post.datetime} 
                   postId={post.id}
                   likes={countLikes(post.id)}
                   liked={likedPost(post.id)}
+                  bookmarks={countBookmarks(post.id)}
+                  bookmarked={bookmarkedPost(post.id)}
                   likePost={() => {
 
                         const postLikes = posts.likes
@@ -132,6 +156,30 @@ const Home = () => {
                                 dispatch(removeLike(verifyLike.id))
                             }
                       }}
+                  bookmarkPost={() => {
+
+                        const postBookmarks = posts.bookmarks
+                          const verifyBookmark = postBookmarks.find(x => ((x.postId == post.id) && (x.userId == uid)))
+                            if(verifyBookmark == undefined) {
+                              dispatch(addBookmark({
+                                "id" : String(randomNum(1290443493, 903438802823)),
+                                "postId" : post.id,
+                                "userId" : uid
+                              }))
+                            } else {
+                                dispatch(removeBookmark(verifyBookmark.id))
+                            }
+                      }}
+                  openModal={() => {
+                    const verifyPost = posts.posts.find(x => x.id == post.id)
+                    if(verifyPost) {
+                      console.log("there is a post like tihs")
+                      dispatch(fetchSinglePost(post.id))
+                      document.getElementById('my_modal_2').showModal()
+                    } 
+                  }}
+                  currentPostUser = {posts.singlePost !== null && posts.singlePost.u_name}
+                  currentPostContent = {posts.singlePost !== null && posts.singlePost.body}
                   deletePost={()=> dispatch(deletePost(post.id))}
                 />))
   }else if(posts.error == true) {

@@ -4,8 +4,9 @@ import axios from "axios";
 let initialState = {
     isLoading: false,
     posts: [],
+    singlePost: null,
     likes: [],
-    updateLikes: false,
+    bookmarks: [],
     error: false
 }
 
@@ -45,6 +46,24 @@ export const addLike = createAsyncThunk("post/addLike", async(postData, thunkAPI
     }
 })
 
+export const fetchBookmarks  = createAsyncThunk("post/fetchBookmarks", async() => {
+        try {
+            const res = await axios.get('http://localhost:1997/bookmarks')
+            return res.data
+        } catch (err) {
+            return err
+        }
+})
+
+export const addBookmark = createAsyncThunk("post/addBookmark", async(postData, thunkAPI) => {
+    try {
+        const res = await axios.post("http://localhost:1997/bookmarks", postData)
+        return res.data
+    } catch (err) {
+        return thunkAPI.rejectWithValue(err.res.data.errors)
+    }
+})
+
 export const deletePost = createAsyncThunk("post/deletePost", async(id) => {
     await axios.delete(`http://localhost:1997/posts/${id}`)
     return id
@@ -56,6 +75,19 @@ export const removeLike = createAsyncThunk("post/removeLike", async(id) => {
         await axios.delete(`http://localhost:1997/likes/${id}`)
         return id
     }
+})
+
+export const removeBookmark = createAsyncThunk("post/removeBookmark", async(id) => {
+    const res = await axios.get(`http://localhost:1997/bookmarks/${id}`)
+    if(res.data.id == id) {
+        await axios.delete(`http://localhost:1997/bookmarks/${id}`)
+        return id
+    }
+})
+
+export const fetchSinglePost  = createAsyncThunk("post/fetchSinglePost", async(id) => {
+    const res = await axios.get(`http://localhost:1997/posts/${id}`)
+    return res.data
 })
 
 const PostSlice = createSlice({
@@ -115,6 +147,30 @@ const PostSlice = createSlice({
                 state.likes = null,
                 state.error = true
             })
+            .addCase(fetchBookmarks.pending, (state) => {
+                state.isLoading = true,
+                state.bookmarks = null
+            })
+            .addCase(fetchBookmarks.fulfilled, (state, action) => {
+                state.isLoading = false,
+                state.bookmarks = action.payload
+            })
+            .addCase(fetchBookmarks.rejected, (state) => {
+                state.isLoading = false,
+                state.bookmarks = null,
+                state.error = true
+            })
+            .addCase(addBookmark.pending, (state) => {
+                state.bookmarks = [...state.bookmarks]
+            })
+            .addCase(addBookmark.fulfilled, (state, action) => {
+                state.bookmarks = [...state.bookmarks, action.payload]
+            })
+            .addCase(addBookmark.rejected, (state) => {
+                state.updateLikes = false,
+                state.bookmarks = null,
+                state.error = true
+            })
             .addCase(deletePost.fulfilled, (state, action) => {
                 const updatedPosts = state.posts.filter(post => post.id !== action.payload)
                 state.isLoading = false,
@@ -136,6 +192,22 @@ const PostSlice = createSlice({
                 state.isLoading = false,
                 state.posts = null,
                 state.error = true
+            })
+            .addCase(removeBookmark.fulfilled, (state, action) => {
+                const updatedBookmarks = state.bookmarks.filter(bookmark => bookmark.id !== action.payload)
+                state.isLoading = false,
+                state.bookmarks = updatedBookmarks
+                state.error = false
+            })
+            .addCase(removeBookmark.rejected, (state) => {
+                state.isLoading = false,
+                state.posts = null,
+                state.error = true
+            })
+            .addCase(fetchSinglePost.fulfilled, (state, action) => {
+                state.isLoading = false,
+                state.singlePost = action.payload
+                state.error = false
             })
     }
 })

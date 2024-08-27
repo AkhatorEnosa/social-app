@@ -23,22 +23,28 @@
   ],
   "posts": [
     {
-      "id": "4210398909",
-      "body": "We outside",
-      "datetime": "Mon Aug 26 2024 11:29:34 GMT+0100 (West Africa Standard Time)",
+      "id": "215374276270",
+      "body": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas bibendum leo sit amet porta tempus. Vestibulum vitae ornare ante. Fusce id urna venenatis, finibus nisl vel, interdum lacus. Vestibulum quis ipsum faucibus, sodales dolor et, facilisis lorem. Cras consequat porta orci, a bibendum orci varius varius. Morbi hendrerit consequat erat.",
+      "datetime": "Tue Aug 27 2024 06:00:01 GMT+0100 (West Africa Standard Time)",
       "u_name": "Janeth Akande",
       "user_id": "639603135000",
-      "u_img": "https://avatar.iran.liara.run/public/girl?username=Jannybaby",
-      "likesCount": 0
+      "u_img": "https://avatar.iran.liara.run/public/girl?username=Jannybaby"
     },
     {
-      "id": "152894495136",
-      "body": "this is my time",
-      "datetime": "Tue Aug 27 2024 04:00:27 GMT+0100 (West Africa Standard Time)",
-      "u_name": "Akhator Osakhogba",
-      "user_id": "373865494980",
-      "u_img": "https://avatar.iran.liara.run/public/boy?username=Gosab",
-      "likesCount": 0
+      "id": "215716151735",
+      "body": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas bibendum leo sit amet porta tempus. Vestibulum vitae ornare ante. Fusce id urna venenatis, finibus nisl vel, interdum lacus. Vestibulum quis ipsum faucibus, sodales dolor et, facilisis lorem. Cras consequat porta orci, a bibendum orci varius varius. Morbi hendrerit consequat erat.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas bibendum leo sit amet porta tempus. Vestibulum vitae ornare ante. Fusce id urna venenatis, finibus nisl vel, interdum lacus. Vestibulum quis ipsum faucibus, sodales dolor et, facilisis lorem. Cras consequat porta orci, a bibendum orci varius varius. Morbi hendrerit consequat erat.",
+      "datetime": "Tue Aug 27 2024 06:04:36 GMT+0100 (West Africa Standard Time)",
+      "u_name": "Janeth Akande",
+      "user_id": "639603135000",
+      "u_img": "https://avatar.iran.liara.run/public/girl?username=Jannybaby"
+    },
+    {
+      "id": "506599238088",
+      "body": "Good morning, beautiful! I wish I woke up every morning wrapped up in your arms.\nGood morning, beautiful. I just wanted to be the reason you look at your phone and smile.\nYou’re looking beautiful this morning! I haven’t seen you yet, but you always look beautiful every day.\nGood morning, baby. I hope you have a good morning. I know you’re going to have a good evening.\nHey, sexy! I just had a great dream about you. It’s a little hard to describe – maybe we should meet later, so I can show you how it went in person?\nI woke up so hot this morning for some reason. I must have been dreaming of you all night long!\nI wish you were here next to me in bed this morning. Maybe it’s good you’re not though – neither of us would get up all day!\nGood morning, babe. I hope your day is fantastic – but I know it won’t be as amazing as tonight’s going to be…\nMorning babe, I hope your day is filled with smiles, positivity, sweet surprises, and, of course, me…\nHey beautiful, it’s time to wake up! I know it’s hard because you were probably dreaming about me, but I promise I’m even better in real life.\nI’m excited to see you later. If you know what I have planned for you later, you’ll be just as enthusiastic as I am.\nDid the sun just come out or did you just smile at me?\nSometimes, I wish there was no alarm clock because that is the only device that wakes me up while I am dreaming of you.\nMy heart just skipped a beat, I guess you woke up. Can you see the connection already? Good morning, beautiful.",
+      "datetime": "Tue Aug 27 2024 09:10:24 GMT+0100 (West Africa Standard Time)",
+      "u_name": "Janeth Akande",
+      "user_id": "639603135000",
+      "u_img": "https://avatar.iran.liara.run/public/girl?username=Jannybaby"
     }
   ],
   "likes": [
@@ -49,19 +55,70 @@
     },
     {
       "id": "484225046718",
-      "postId": "4210398909",
+      "postId": null,
       "userId": "373865494980"
     },
     {
       "id": "162479909649",
-      "postId": "4210398909",
+      "postId": null,
       "userId": "639603135000"
     },
     {
       "id": "213360997207",
-      "postId": "152894495136",
+      "postId": null,
+      "userId": "639603135000"
+    },
+    {
+      "id": "206206677872",
+      "postId": null,
+      "userId": "639603135000"
+    },
+    {
+      "id": "221413328761",
+      "postId": null,
+      "userId": "373865494980"
+    },
+    {
+      "id": "632206269732",
+      "postId": null,
+      "userId": "639603135000"
+    },
+    {
+      "id": "199580200510",
+      "postId": null,
+      "userId": "639603135000"
+    },
+    {
+      "id": "843569681305",
+      "postId": "506599238088",
       "userId": "639603135000"
     }
   ],
-  "bookmarks": []
+  "bookmarks": [
+    {
+      "id": "773667912828",
+      "postId": null,
+      "userId": "639603135000"
+    },
+    {
+      "id": "518468191405",
+      "postId": null,
+      "userId": "373865494980"
+    },
+    {
+      "id": "90516462426",
+      "postId": null,
+      "userId": "639603135000"
+    },
+    {
+      "id": "495692244083",
+      "postId": null,
+      "userId": "639603135000"
+    },
+    {
+      "id": "516360817744",
+      "postId": "506599238088",
+      "userId": "639603135000"
+    }
+  ]
 }
