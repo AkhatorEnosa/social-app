@@ -8,6 +8,7 @@ const Register = () => {
     const navigate = useNavigate()
     const dispatch = useDispatch()
     const users = useSelector((state) => state.user)
+    const datenow = new Date();
 
     const [name, setName] = useState("")
     const [u_name, setUname] = useState("")
@@ -15,13 +16,9 @@ const Register = () => {
     const [gender, setGender] = useState("Male")
     const [password, setPassword] = useState("")
 
-    const createId = () => {
-        if (users.user.length > 0){
-            return users.user[users.user.length - 1].id + 1
-        } else {
-            return 1
-        }
-    }
+  const randomNum = (min, max) => { // min and max range
+    return Math.floor(Math.random() * (max - min + 1) + min);
+  }
 
 
     const handleSubmit = (e) => {
@@ -29,13 +26,14 @@ const Register = () => {
 
         if(name !== '' && u_name !== '' && email !== '' && gender !== '' && password !== '' ) {
             dispatch(register({
-                id: createId(),
+                id:  String(randomNum(1, 903438802823)),
                 name,
                 u_name,
                 email,
                 gender,
                 password,
-                u_img: gender == "Male" ? `https://avatar.iran.liara.run/public/boy?username=${u_name}` : `https://avatar.iran.liara.run/public/girl?username=${u_name}`
+                u_img: gender == "Male" ? `https://avatar.iran.liara.run/public/boy?username=${u_name}` : `https://avatar.iran.liara.run/public/girl?username=${u_name}`,
+                createdAt: datenow.toString()
             }))
                     navigate('/login')
         } else {

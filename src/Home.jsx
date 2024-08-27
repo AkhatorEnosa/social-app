@@ -3,7 +3,7 @@ import PostCard from "./components/PostCard"
 import Navbar from "./components/Navbar"
 import { useDispatch, useSelector } from "react-redux"
 import { getCurrUser } from "./components/api/apiSlice"
-import { addPost,  deletePost, fetchPosts } from "./components/api/PostSlice"
+import { addLike, addPost,  deletePost, fetchLikes, fetchPosts, removeLike } from "./components/api/PostSlice"
 
 const Home = () => {
   const [newPost, setNewPost] = useState("")
@@ -30,11 +30,12 @@ const Home = () => {
 
   useEffect(() => {
       dispatch(fetchPosts())
+      dispatch(fetchLikes())
     setInterval(() => {
+      dispatch(fetchLikes())
       dispatch(fetchPosts())
     }, 300000);
   }, [dispatch])
-
 
 // const randomizeLetters = () => {
 //   var str = "abcdefghijklmnopqrstuvwxyz";
@@ -45,20 +46,44 @@ const Home = () => {
     return Math.floor(Math.random() * (max - min + 1) + min);
   }
 
+ //Add New Post
   const handleSubmit = (e) => {
     e.preventDefault()
-      dispatch(fetchPosts())
     if(newPost !== '') {
       dispatch(addPost({
-        id: String(randomNum(1290443493, 903438802823)), //get correct id
+        id: String(randomNum(1290443493, 903438802823)), //create id
         body: newPost,
         datetime: datenow.toString(),
         u_name: currUserData.name,
         user_id: currUserData.id,
-        u_img: currUserData.u_img
+        u_img: currUserData.u_img,
+        likesCount: 0
       }))
+      dispatch(fetchPosts())
     }
       setNewPost('')
+  }
+
+   const countLikes = (id) => {
+    if(posts.likes !== null) {
+      const filterLikes = posts.likes.filter(like => like.postId == id)
+      if(filterLikes) {
+        return filterLikes.length
+      } else {
+        console.log("Jembe")
+      }
+    }
+  }
+
+  const likedPost = (id) => {
+    if(posts.likes !== null) {
+      const filterLiked = posts.likes.find(like => (like.postId == id) && (like.userId == uid))
+      if(filterLiked) {
+        return true
+      } else {
+        return false
+      }
+    }
   }
 
   let newPostForm;
@@ -91,6 +116,22 @@ const Home = () => {
                   bookmarks={post.bookmarks} 
                   datetime={post.datetime} 
                   postId={post.id}
+                  likes={countLikes(post.id)}
+                  liked={likedPost(post.id)}
+                  likePost={() => {
+
+                        const postLikes = posts.likes
+                          const verifyLike = postLikes.find(x => ((x.postId == post.id) && (x.userId == uid)))
+                            if(verifyLike == undefined) {
+                              dispatch(addLike({
+                                "id" : String(randomNum(1290443493, 903438802823)),
+                                "postId" : post.id,
+                                "userId" : uid
+                              }))
+                            } else {
+                                dispatch(removeLike(verifyLike.id))
+                            }
+                      }}
                   deletePost={()=> dispatch(deletePost(post.id))}
                 />))
   }else if(posts.error == true) {

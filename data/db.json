@@ -1,33 +1,67 @@
 {
   "users": [
     {
-      "id": 1,
+      "id": "373865494980",
       "name": "Akhator Osakhogba",
       "u_name": "Gosab",
       "email": "aosakhogba@gmail.com",
       "gender": "Male",
       "password": "pass1234",
-      "u_img": "https://avatar.iran.liara.run/public/boy?username=Gosab"
+      "u_img": "https://avatar.iran.liara.run/public/boy?username=Gosab",
+      "createdAt": "Mon Aug 26 2024 08:57:55 GMT+0100 (West Africa Standard Time)"
+    },
+    {
+      "id": "639603135000",
+      "name": "Janeth Akande",
+      "u_name": "Jannybaby",
+      "email": "user@user.com",
+      "gender": "Female",
+      "password": "12345",
+      "u_img": "https://avatar.iran.liara.run/public/girl?username=Jannybaby",
+      "createdAt": "Mon Aug 26 2024 08:58:11 GMT+0100 (West Africa Standard Time)"
     }
   ],
   "posts": [
     {
-      "id": "635033313118",
-      "body": "AMAZING",
-      "datetime": "Sun Aug 25 2024 15:21:21 GMT+0100 (West Africa Standard Time)",
-      "u_name": "Akhator Osakhogba",
-      "user_id": 1,
-      "u_img": "https://avatar.iran.liara.run/public/boy?username=Gosab"
+      "id": "4210398909",
+      "body": "We outside",
+      "datetime": "Mon Aug 26 2024 11:29:34 GMT+0100 (West Africa Standard Time)",
+      "u_name": "Janeth Akande",
+      "user_id": "639603135000",
+      "u_img": "https://avatar.iran.liara.run/public/girl?username=Jannybaby",
+      "likesCount": 0
     },
     {
-      "id": "398815636248",
-      "body": "Ymmm",
-      "datetime": "Sun Aug 25 2024 15:21:26 GMT+0100 (West Africa Standard Time)",
+      "id": "152894495136",
+      "body": "this is my time",
+      "datetime": "Tue Aug 27 2024 04:00:27 GMT+0100 (West Africa Standard Time)",
       "u_name": "Akhator Osakhogba",
-      "user_id": 1,
-      "u_img": "https://avatar.iran.liara.run/public/boy?username=Gosab"
+      "user_id": "373865494980",
+      "u_img": "https://avatar.iran.liara.run/public/boy?username=Gosab",
+      "likesCount": 0
     }
   ],
-  "likes": [],
+  "likes": [
+    {
+      "id": "496196905899",
+      "postId": null,
+      "userId": "639603135000"
+    },
+    {
+      "id": "484225046718",
+      "postId": "4210398909",
+      "userId": "373865494980"
+    },
+    {
+      "id": "162479909649",
+      "postId": "4210398909",
+      "userId": "639603135000"
+    },
+    {
+      "id": "213360997207",
+      "postId": "152894495136",
+      "userId": "639603135000"
+    }
+  ],
   "bookmarks": []
 }

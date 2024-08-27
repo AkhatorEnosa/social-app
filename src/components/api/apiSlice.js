@@ -81,7 +81,7 @@ const apiSlice = createSlice({
             })
             .addCase(logout.fulfilled, (state) => {
                 state.loading = false,
-                state.user = undefined
+                state.user = []
             })
     }
 })
